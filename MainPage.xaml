@@ -1,0 +1,109 @@
+﻿<Page
+    x:Class="TestOneDriveSdk_001.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:TestOneDriveSdk_001"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+        <Style x:Key="ButtonStyle"
+               TargetType="Button">
+            <Setter Property="Height"
+                    Value="40" />
+            <Setter Property="Margin"
+                    Value="0,16,0,0" />
+            <Setter Property="HorizontalAlignment"
+                    Value="Stretch" />
+            <Setter Property="VerticalAlignment"
+                    Value="Stretch" />
+        </Style>
+
+        <Style x:Key="TextBoxStyle"
+               TargetType="TextBox">
+            <Setter Property="Margin"
+                    Value="0,20,0,-10" />
+        </Style>
+    </Page.Resources>
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <ScrollViewer>
+            <StackPanel Margin="12,0">
+                <Button Content="Authenticate"
+                        Click="AuthenticateClick"
+                        Style="{StaticResource ButtonStyle}" />
+
+                <Button Content="Get Root Folder"
+                        Click="GetRootFolderClick"
+                        Style="{StaticResource ButtonStyle}" />
+
+                <Button Content="Get App Folder"
+                        Click="GetAppRootClick"
+                        Style="{StaticResource ButtonStyle}" />
+
+                <TextBox x:Name="FolderPathText"
+                         PlaceholderText="Enter a path with leading '/'"
+                         Style="{StaticResource TextBoxStyle}" />
+
+                <Button Content="Browse Subfolder"
+                        Click="BrowseSubfolderClick"
+                        Style="{StaticResource ButtonStyle}" />
+
+                <TextBox x:Name="DownloadFilePathText"
+                         PlaceholderText="Enter a path with leading '/'"
+                         Style="{StaticResource TextBoxStyle}" />
+
+                <Button Content="Download a file"
+                        Click="DownloadFileClick"
+                        Style="{StaticResource ButtonStyle}" />
+
+                <Button Content="Upload a file"
+                        Click="UploadFileClick"
+                        Style="{StaticResource ButtonStyle}" />
+
+                <Button Content="Get a link"
+                        Click="GetLinkClick"
+                        Style="{StaticResource ButtonStyle}" />
+
+                <TextBox x:Name="NewFileNameText"
+                         PlaceholderText="Enter a new name for the file"
+                         Style="{StaticResource TextBoxStyle}" />
+
+                <Button Content="Rename the file"
+                        Click="RenameClick"
+                        Style="{StaticResource ButtonStyle}" />
+
+                <Button Content="Move the file"
+                        Click="MoveClick"
+                        Style="{StaticResource ButtonStyle}" />
+
+                <Button Content="Copy the file"
+                        Click="CopyClick"
+                        Style="{StaticResource ButtonStyle}" />
+
+                <TextBox x:Name="NewFolderNameText"
+                         PlaceholderText="Enter a name for the new subfolder"
+                         Style="{StaticResource TextBoxStyle}" />
+
+                <Button Content="Create a new subfolder in Apps/TestOneDriveSdk_001"
+                        Click="NewFolderClick"
+                        Style="{StaticResource ButtonStyle}" />
+
+                <Button Content="Log off"
+                        Click="LogOffClick"
+                        Style="{StaticResource ButtonStyle}" />
+            </StackPanel>
+        </ScrollViewer>
+
+        <Rectangle Fill="#77000000"
+                   x:Name="PleaseWaitCache"
+                   Visibility="Collapsed" />
+
+        <ProgressRing x:Name="Progress"
+                      VerticalAlignment="Center"
+                      HorizontalAlignment="Center"
+                      Width="40"
+                      Height="40" />
+    </Grid>
+</Page>
