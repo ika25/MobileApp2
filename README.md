@@ -13,11 +13,11 @@ You can also calculate you daily calorie intake it works for both male and femal
 
 # Activate loaction in Windows device
 
-1. Go windows settings/location privacy setting and active the location service on.
+1.Go windows settings/location privacy setting and active the location service on.
 
-2. Go "Choose apps that can use your precise location", Maps must actived "On".
+2.Go "Choose apps that can use your precise location", Maps must actived "On".
 
-3. This program "TestOneDriveSdk_001" is also.
+3.This program "TestOneDriveSdk_001" is also.
 
 # Goal Page
 ![goal](https://user-images.githubusercontent.com/16356275/38574331-7b971b42-3cf0-11e8-919e-96a337bd9162.png)
