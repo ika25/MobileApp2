@@ -8,7 +8,7 @@ You can also calculate you daily calorie intake it works for both male and femal
 
 2.Deploy Solution
 
-3.Run Local Machine
+3.Run Local Machine (i runed on x86)
 
 
 # Activate loaction in Windows device
