@@ -1,6 +1,7 @@
-# MobileApp2
+# Fitness Tracker UWP
 
-Fitness Tracker UWP
-This app is designed to track your movement via GPS tracker, you can select your goals for example walk 10m and after you finish it
-will send you end notification, you can pause your progress and continue.
-In this app you can upload photos from device and share it on twitter or one drive.
+For my 3rd year Mobile App Development i decided to make Fitness Tracker App, in this app you will be able to select how many meters you want to do cardio or walking workout ones you set that goal you hit Start button and you are ready to go you can also pause your workout if need to take break, when you finish your workout app will send notify you that you finished your goal.
+You can also calculate you daily calorie intake it works for both male and female, you have workout saved you can easily upload them in the app and browse during your workout.
+
+
+
