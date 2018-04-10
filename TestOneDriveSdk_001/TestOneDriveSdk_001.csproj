@@ -11,14 +11,14 @@
     <AssemblyName>TestOneDriveSdk_001</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
-    <TargetPlatformVersion>10.0.10240.0</TargetPlatformVersion>
-    <TargetPlatformMinVersion>10.0.10240.0</TargetPlatformMinVersion>
+    <TargetPlatformVersion>10.0.10586.0</TargetPlatformVersion>
+    <TargetPlatformMinVersion>10.0.10586.0</TargetPlatformMinVersion>
     <MinimumVisualStudioVersion>14</MinimumVisualStudioVersion>
     <EnableDotNetNativeCompatibleProfile>true</EnableDotNetNativeCompatibleProfile>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <PackageCertificateKeyFile>TestOneDriveSdk_001_StoreKey.pfx</PackageCertificateKeyFile>
-    <PackageCertificateThumbprint>C42E080FF403799A17101E6E456B9852ADA80AC5</PackageCertificateThumbprint>
+    <PackageCertificateKeyFile>TestOneDriveSdk_001_TemporaryKey.pfx</PackageCertificateKeyFile>
+    <PackageCertificateThumbprint>745886E29BE1526F7C2B8B4A28EED5031F6CFD22</PackageCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM'">
     <DebugSymbols>true</DebugSymbols>
@@ -92,6 +92,7 @@
   <ItemGroup>
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
     <None Include="project.json" />
+    <None Include="TestOneDriveSdk_001_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
@@ -108,21 +109,36 @@
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
-    <None Include="TestOneDriveSdk_001_StoreKey.pfx" />
-    <None Include="TestOneDriveSdk_001_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Package.StoreAssociation.xml" />
+    <Content Include="Assets\btn_goal.png" />
+    <Content Include="Assets\btn_map.png" />
+    <Content Include="Assets\btn_upload.png" />
+    <Content Include="Assets\calc_btn.png" />
+    <Content Include="Assets\goal_bg.png" />
+    <Content Include="Assets\icon-goal.png" />
+    <Content Include="Assets\icon-map.png" />
+    <Content Include="Assets\icon-upload.png" />
+    <Content Include="Assets\Locator-Icon-resized.png" />
     <Content Include="Assets\LogoWhiteBlue.jpg" />
     <Content Include="Assets\LogoWhiteBlue.scale-100.jpg" />
     <Content Include="Assets\LogoWhiteBlue.scale-125.jpg" />
     <Content Include="Assets\LogoWhiteBlue.scale-150.jpg" />
     <Content Include="Assets\LogoWhiteBlue.scale-200.jpg" />
     <Content Include="Assets\LogoWhiteBlue.scale-400.jpg" />
+    <Content Include="Assets\plus_add_blue.png" />
+    <Content Include="Assets\plus_add_minus.png" />
+    <Content Include="Assets\running.jpg" />
+    <Content Include="Assets\save-button-grey-hi.png" />
+    <Content Include="Assets\SplashScreen.scale-200.jpg" />
+    <Content Include="Assets\SplashScreen.scale-400.jpg" />
+    <Content Include="Assets\text_back.jpg" />
+    <Content Include="Assets\upload-button-circle.png" />
     <Content Include="Assets\upload.png" />
+    <Content Include="Assets\uploaded-image.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
-    <Content Include="Assets\SplashScreen.scale-200.png" />
     <Content Include="Assets\Square150x150Logo.scale-200.png" />
     <Content Include="Assets\Square44x44Logo.scale-200.png" />
     <Content Include="Assets\Square44x44Logo.targetsize-24_altform-unplated.png" />

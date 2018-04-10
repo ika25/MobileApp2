@@ -93,7 +93,7 @@ namespace TestOneDriveSdk_001
 
         private readonly string[] _scopes =
       {
-            "onedrive.readonly",
+            "onedrive.readwrite",
             "onedrive.appfolder",
             "wl.signin",
         };
@@ -148,7 +148,7 @@ namespace TestOneDriveSdk_001
 
             }
         }
-  private static void InitTwitterCredentials()
+        private static void InitTwitterCredentials()
         {
             var creds = new TwitterCredentials(Access_Token, Access_Token_Secret, Consumer_key, Consumer_secret);
             Auth.SetUserCredentials(Consumer_key, Consumer_secret, Access_Token, Access_Token_Secret);
@@ -165,7 +165,17 @@ namespace TestOneDriveSdk_001
 
         private void saveButton_Click(object sender, RoutedEventArgs e)
         {
-            goal = double.Parse(goaltextbox.Text.ToString());
+            try
+            {
+                goal = double.Parse(goaltextbox.Text.ToString());                
+            }
+            catch (Exception ex)
+            {
+                var dialog = new MessageDialog("Please enter the correct goal.", "");
+                dialog.ShowAsync();
+                txtBoxAge.Focus(FocusState.Keyboard);
+                return;
+            }
 
             saveGoal();
         }
@@ -179,6 +189,16 @@ namespace TestOneDriveSdk_001
                 using (StreamWriter writer = new StreamWriter(isoStream))
                 {
                     writer.Write(goal);
+                    writer.WriteLine();
+                    writer.Write(txtBoxAge.Text);
+                    writer.WriteLine();
+                    writer.Write(txtBoxHeight.Text);
+                    writer.WriteLine();
+                    writer.Write(txtBoxWeight.Text);
+                    writer.WriteLine();
+                    writer.Write(radMale.IsChecked);
+                    writer.WriteLine();
+                    writer.Write(comboFactor.SelectedIndex);
                 }
             }
         }
@@ -194,8 +214,26 @@ namespace TestOneDriveSdk_001
                 {
                     using (StreamReader reader = new StreamReader(isoStream))
                     {
-                        string goal_string = reader.ReadLine();
-                        goal = double.Parse(goal_string);
+                        try{
+                            string goal_string = reader.ReadLine();
+                            goal = double.Parse(goal_string);
+                            txtBoxAge.Text = reader.ReadLine();
+                            txtBoxHeight.Text = reader.ReadLine();
+                            txtBoxWeight.Text = reader.ReadLine();
+                            if(bool.Parse(reader.ReadLine()))
+                            {
+                                radMale.IsChecked = true;
+                                radFemale.IsChecked = false;
+                            }
+                            else
+                            {
+                                radMale.IsChecked = false;
+                                radFemale.IsChecked = true;
+                            }
+                            comboFactor.SelectedIndex = Int32.Parse(reader.ReadLine());
+                        }
+                        catch (Exception){
+                        }
                     }
                 }
             }
@@ -296,110 +334,116 @@ namespace TestOneDriveSdk_001
             pauseButton.IsEnabled = false;
         }
 
+        // 4/4/2018
+        /*   
+                private async void setUploadButton_Click(object sender, RoutedEventArgs e)
+                {
+                    InitTwitterCredentials();
+
+                    Exception error = null;
+
+                    try
+                    {
+                        _session = null;
+                        _client = OneDriveClientExtensions.GetClientUsingOnlineIdAuthenticator(
+                              _scopes);
+
+                       _session = await _client.AuthenticateAsync();
+                        Debug.WriteLine($"Token: {_session.AccessToken}");
+
+                        var dialog = new MessageDialog("You are authenticated!", "Success!");
+
+                        await dialog.ShowAsync();
+                        uploadFile();
+                    }
+                    catch (Exception ex)
+                    {
+                        error = ex;
+                    }
+
+                    if (error != null)
+                    {
+                        var dialog = new MessageDialog(error.ToString(), "Sorry!");
+                        await dialog.ShowAsync();
+                    }
+                }
+        */
+
+        public async void CopyFile(StorageFile fileToCopy, StorageFile filetoReplace)
+        {
+            await fileToCopy.CopyAndReplaceAsync(filetoReplace);
+        }
+
         private async void setUploadButton_Click(object sender, RoutedEventArgs e)
         {
+            //InitTwitterCredentials();
 
-
-
-            InitTwitterCredentials();
-
-
-
- /* var picker = new Windows.Storage.Pickers.FileOpenPicker();
-              picker.ViewMode = Windows.Storage.Pickers.PickerViewMode.Thumbnail;
-              picker.SuggestedStartLocation =
-                  Windows.Storage.Pickers.PickerLocationId.PicturesLibrary;
-              picker.FileTypeFilter.Add(".jpg");
-              picker.FileTypeFilter.Add(".jpeg");
-              picker.FileTypeFilter.Add(".png");
-              Windows.Storage.StorageFile file = await picker.PickSingleFileAsync(); */
-
-
-          
-
-            // Application now has read/write access to the picked file
-
-
-            //  var bitmap = new BitmapImage(new Uri(file.Path));
-
-
-            /*    IRandomAccessStream random = await RandomAccessStreamReference.CreateFromUri(new Uri(file.Path)).OpenReadAsync();
-                 Windows.Graphics.Imaging.BitmapDecoder decoder = await Windows.Graphics.Imaging.BitmapDecoder.CreateAsync(random);
-                 Windows.Graphics.Imaging.PixelDataProvider pixelData = await decoder.GetPixelDataAsync();
-                 byte[] bytes = pixelData.DetachPixelData();   */
-
-            Exception error = null;
-
-
-            try
+            var picker = new Windows.Storage.Pickers.FileOpenPicker();
+            picker.ViewMode = Windows.Storage.Pickers.PickerViewMode.Thumbnail;
+            picker.SuggestedStartLocation =
+                Windows.Storage.Pickers.PickerLocationId.PicturesLibrary;
+            picker.FileTypeFilter.Add(".jpg");
+            picker.FileTypeFilter.Add(".jpeg");
+            picker.FileTypeFilter.Add(".png");
+            
+            Windows.Storage.StorageFile file = await picker.PickSingleFileAsync();
+            if (file != null && file.Path.Equals("") == false)
             {
-                _session = null;
+                Windows.Storage.StorageFolder storageFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
+                Windows.Storage.StorageFile saveFile = await storageFolder.CreateFileAsync("save.png",
+                        Windows.Storage.CreationCollisionOption.ReplaceExisting);
 
+                CopyFile(file, saveFile);
 
+                // Application now has read/write access to the picked file
 
-                _client = OneDriveClientExtensions.GetClientUsingOnlineIdAuthenticator(
-                      _scopes);
+                var bitmap = new BitmapImage(new Uri(file.Path));
 
-               _session = await _client.AuthenticateAsync();
-                Debug.WriteLine($"Token: {_session.AccessToken}");
+                var Stream = await file.OpenAsync(Windows.Storage.FileAccessMode.Read);
 
-                var dialog = new MessageDialog("You are authenticated!", "Success!");
-
-                await dialog.ShowAsync();
-
-
-            uploadFile();
-
-
-
-
-
+                bitmap.SetSource(Stream);
+                img.Source = bitmap;
+                this.textBlock.Text = "Picked photo: " + file.Name;
             }
-            catch (Exception ex)
+            
+            
+
+            /*
+            using (var inputStream = await file.OpenSequentialReadAsync())
             {
-                error = ex;
+                var readStream = inputStream.AsStreamForRead();
+                var byteArray = new byte[readStream.Length];
+                await readStream.ReadAsync(byteArray, 0, byteArray.Length);
+                
             }
-
-            if (error != null)
-            {
-                var dialog = new MessageDialog(error.ToString(), "Sorry!");
-                await dialog.ShowAsync();
-            }
-
-
-            //     InitTwitterCredentials();
+            */
+            /*IRandomAccessStream random = await RandomAccessStreamReference.CreateFromUri(new Uri(file.Path)).OpenReadAsync();
+            Windows.Graphics.Imaging.BitmapDecoder decoder = await Windows.Graphics.Imaging.BitmapDecoder.CreateAsync(random);
+            Windows.Graphics.Imaging.PixelDataProvider pixelData = await decoder.GetPixelDataAsync();
+            byte[] bytes = pixelData.DetachPixelData();
 
 
-            //  Tweet.PublishTweet(file.Path);
-
-            //  Tweet.PublishTweetWithImage(file.Name.ToString(), bytes);
-
-
-
-
+            Tweet.PublishTweet(file.Path);
+            Tweet.PublishTweetWithImage(file.Name.ToString(), bytes);*/
 
             // ----------- STORE THIS BITMAP TO SERVER ------ //
 
-            //   this.textBlock.Text = "Picked photo: " + file.Name;
-            //var wbm = new WriteableBitmap(600, 800);
-            //await wbm.SetSourceAsync(bitmap);
-            //StorageFolder folder = ApplicationData.Current.LocalFolder;
-            //if (folder != null)
-            //{
-            //    StorageFile fileToSave = await folder.CreateFileAsync("imagefile" + ".jpg", CreationCollisionOption.ReplaceExisting);
-            //    using (var storageStream = await file.OpenAsync(FileAccessMode.ReadWrite))
-            //    {
-            //        var encoder = await BitmapEncoder.CreateAsync(BitmapEncoder.JpegEncoderId, storageStream);
-            //        var pixelStream = wbm.PixelBuffer.AsStream();
-            //        var pixels = new byte[pixelStream.Length];
-            //        await pixelStream.ReadAsync(pixels, 0, pixels.Length);
-            //        encoder.SetPixelData(BitmapPixelFormat.Bgra8, BitmapAlphaMode.Ignore, (uint)wbm.PixelWidth, (uint)wbm.PixelHeight, 48, 48, pixels);
-            //        await encoder.FlushAsync();
-            //    }
-            //}
-
-
-
+            /*var wbm = new WriteableBitmap(600, 800);
+            await wbm.SetSourceAsync(bitmap);
+            StorageFolder folder = ApplicationData.Current.LocalFolder;
+            if (folder != null)
+            {
+                StorageFile fileToSave = await folder.CreateFileAsync("imagefile" + ".jpg", CreationCollisionOption.ReplaceExisting);
+                using (var storageStream = await file.OpenAsync(FileAccessMode.ReadWrite))
+                {
+                    var encoder = await BitmapEncoder.CreateAsync(BitmapEncoder.JpegEncoderId, storageStream);
+                    var pixelStream = wbm.PixelBuffer.AsStream();
+                    var pixels = new byte[pixelStream.Length];
+                    await pixelStream.ReadAsync(pixels, 0, pixels.Length);
+                    encoder.SetPixelData(BitmapPixelFormat.Bgra8, BitmapAlphaMode.Ignore, (uint)wbm.PixelWidth, (uint)wbm.PixelHeight, 48, 48, pixels);
+                    await encoder.FlushAsync();
+                }
+            }*/
         }
 
         public async void getlink()
@@ -523,12 +567,7 @@ namespace TestOneDriveSdk_001
                     Windows.Graphics.Imaging.BitmapDecoder decoder = await Windows.Graphics.Imaging.BitmapDecoder.CreateAsync(random);
                     Windows.Graphics.Imaging.PixelDataProvider pixelData = await decoder.GetPixelDataAsync();
                     byte[] bytes = pixelData.DetachPixelData(); */
-
                     
-
-
-
-
 
                     var Stream = await file.OpenAsync(Windows.Storage.FileAccessMode.Read);
 
@@ -546,19 +585,151 @@ namespace TestOneDriveSdk_001
 
 
                     }
-
-                        
-
-                   
-
-                   
                 }
+            }
+        }
+        private void GoalButton_Click(object sender, RoutedEventArgs e)
+        {
+            //do whatever you need.
+            Canvas.SetZIndex(GoalGrid, 3);
+            Canvas.SetZIndex(MapGrid, 1);
+            Canvas.SetZIndex(UploadGrid, 1);
+            Page_Title.Text = "Goal";
+        }
+
+        private void GoalButton_Tapped(object sender, Windows.UI.Xaml.Input.TappedRoutedEventArgs e)
+        {
+            e.Handled = true;
+        }
+
+
+        private void MapButton_Click(object sender, RoutedEventArgs e)
+        {
+            //do whatever you need.
+            Canvas.SetZIndex(MapGrid, 3);
+            Canvas.SetZIndex(GoalGrid, 1);
+            Canvas.SetZIndex(UploadGrid, 1);
+            Page_Title.Text = "Map";
+        }
+
+        private void MapButton_Tapped(object sender, Windows.UI.Xaml.Input.TappedRoutedEventArgs e)
+        {
+            e.Handled = true;
+        }
+
+
+        private async void UploadButton_Click(object sender, RoutedEventArgs e)
+        {
+            //do whatever you need.
+            Canvas.SetZIndex(UploadGrid, 3);
+            Canvas.SetZIndex(GoalGrid, 1);
+            Canvas.SetZIndex(MapGrid, 1);
+            Page_Title.Text = "Upload";
+
+
+
+            Windows.Storage.StorageFolder storageFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
+
+            try
+            {
+                Windows.Storage.StorageFile saveFile = await storageFolder.GetFileAsync("save.png");
+
+                var bitmap = new BitmapImage(new Uri(saveFile.Path));
+
+                var Stream = await saveFile.OpenAsync(Windows.Storage.FileAccessMode.Read);
+
+                bitmap.SetSource(Stream);
+                img.Source = bitmap;
+            }
+            catch (Exception)
+            {
+
+            }
+            
+        }
+
+        private void UploadButton_Tapped(object sender, Windows.UI.Xaml.Input.TappedRoutedEventArgs e)
+        {
+            e.Handled = true;
+        }
+
+        private void calculateCalory(object sender, RoutedEventArgs e)
+        {
+            double value_BMR;
+
+            int weight = 0;
+            int height = 0;
+            int age = 0;
+
+            try
+            {
+                age = Convert.ToInt32(txtBoxAge.Text);
+            }
+            catch (Exception ex)
+            {
+                var dialog = new MessageDialog("Please enter the correct age.", "");
+                dialog.ShowAsync();
+                txtBoxAge.Focus(FocusState.Keyboard);
+                return;
+            }
+
+            try
+            {
+                height = Convert.ToInt32(txtBoxHeight.Text);
+            }
+            catch (Exception ex)
+            {
+                var dialog = new MessageDialog("Please enter the correct height.", "");
+                dialog.ShowAsync();
+                txtBoxHeight.Focus(FocusState.Keyboard);
+                return;
+            }
+
+            try
+            {
+                weight = Convert.ToInt32(txtBoxWeight.Text);
+            }
+            catch (Exception ex)
+            {
+                var dialog = new MessageDialog("Please enter the correct weight.", "");
+                dialog.ShowAsync();
+                txtBoxWeight.Focus(FocusState.Keyboard);
+                return;
+            }
+
+
+
+            if (radMale.IsChecked == true)
+            {
+                value_BMR = 66 + (13.7 * weight) + (5 * height) - (6.8 * age);
+            }
+            else
+            {
+                value_BMR = 665 + (9.6 * weight) + (1.8 * height) - (4.7 * age);
+            }
+
+            switch(comboFactor.SelectedIndex)
+            {
+                case 0:
+                    caloryResult.Text = ((int)(1.2 * value_BMR)).ToString() + "calories \n per day";
+                    return;
+                case 1:
+                    caloryResult.Text = ((int)(1.375 * value_BMR)).ToString() + "calories \n per day";
+                    return;
+                case 2:
+                    caloryResult.Text = ((int)(1.55 * value_BMR)).ToString() + "calories \n per day";
+                    return;
+                case 4:
+                    caloryResult.Text = ((int)(1.725 * value_BMR)).ToString() + "calories \n per day";
+                    return;
+                case 5:
+                    caloryResult.Text = ((int)(1.9 * value_BMR)).ToString() + "calories \n per day";
+                    return;
             }
         }
 
 
-      
     }
 
-  
+
 }
