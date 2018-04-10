@@ -12,3 +12,8 @@ In this page as you can see you can enter your goals,and you can also calculate 
 # Map Page
 ![map](https://user-images.githubusercontent.com/16356275/38574534-ee25237a-3cf0-11e8-8c82-4219b879dca1.png)
 Maps work via GPS system so it will track your movement where evr you are you can zoom in/out and click center button to show your exact loaction
+
+
+# Upload Page
+![upload](https://user-images.githubusercontent.com/16356275/38574641-3e643db2-3cf1-11e8-9759-b56dec150d3b.png)
+In this page you can upload photots you wish to have in your app while you using it.
