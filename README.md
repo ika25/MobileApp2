@@ -9,3 +9,6 @@ You can also calculate you daily calorie intake it works for both male and femal
 In this page as you can see you can enter your goals,and you can also calculate your calories when you feel in all requared information about your self.
 
 
+# Map Page
+![map](https://user-images.githubusercontent.com/16356275/38574534-ee25237a-3cf0-11e8-8c82-4219b879dca1.png)
+Maps work via GPS system so it will track your movement where evr you are you can zoom in/out and click center button to show your exact loaction
