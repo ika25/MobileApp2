@@ -4,4 +4,8 @@ For my 3rd year Mobile App Development i decided to make Fitness Tracker App, in
 You can also calculate you daily calorie intake it works for both male and female, you have workout saved you can easily upload them in the app and browse during your workout.
 
 
+# Goal Page
+![goal](https://user-images.githubusercontent.com/16356275/38574331-7b971b42-3cf0-11e8-919e-96a337bd9162.png)
+In this page as you can see you can enter your goals,and you can also calculate your calories when you feel in all requared information about your self.
+
 
