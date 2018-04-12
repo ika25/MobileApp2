@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <StoreAssociation xmlns="http://schemas.microsoft.com/appx/2010/storeassociation">
-  <Publisher>CN=EA31C564-6854-42AF-BD58-51AFCF3CFAE5</Publisher>
-  <PublisherDisplayName>Laurent Bugnion</PublisherDisplayName>
+  <Publisher>CN=276FF0D0-51B6-47E4-AAC2-91CA2274A6F8</Publisher>
+  <PublisherDisplayName>IrakliLomidze</PublisherDisplayName>
   <GeneratePackageHash>http://www.w3.org/2001/04/xmlenc#sha256</GeneratePackageHash>
   <SupportedLocales>
     <Language Code="af" InMinimumRequirementSet="true" />
@@ -358,14 +358,14 @@
     <Language Code="zu-za" InMinimumRequirementSet="true" />
   </SupportedLocales>
   <ProductReservedInfo>
-    <MainPackageIdentityName>53092LaurentBugnion.TestOneDriveSdk001</MainPackageIdentityName>
+    <MainPackageIdentityName>16707IrakliLomidze.FitnessTracker2.0</MainPackageIdentityName>
     <ReservedNames>
-      <ReservedName>TestOneDriveSdk_001</ReservedName>
+      <ReservedName>Fitness Tracker 2.0</ReservedName>
     </ReservedNames>
   </ProductReservedInfo>
   <AccountPackageIdentityNames>
-    <MainPackageIdentityName>53092LaurentBugnion.ShortUrls</MainPackageIdentityName>
-    <MainPackageIdentityName>53092LaurentBugnion.TestingPushNotifications</MainPackageIdentityName>
+    <MainPackageIdentityName>16707IrakliLomidze.FitnessInfo</MainPackageIdentityName>
+    <MainPackageIdentityName>16707IrakliLomidze.fitnessLift</MainPackageIdentityName>
   </AccountPackageIdentityNames>
-  <PackageInfoList LandingUrl="https://dev.windows.com/dashboard/Application?appId=9NBLGGH6JBXD" />
+  <PackageInfoList LandingUrl="https://developer.microsoft.com/dashboard/Application?appId=9PHP62SHBKF8" />
 </StoreAssociation>

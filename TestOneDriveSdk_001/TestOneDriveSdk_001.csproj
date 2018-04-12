@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>TestOneDriveSdk_001</RootNamespace>
     <AssemblyName>TestOneDriveSdk_001</AssemblyName>
-    <DefaultLanguage>en-US</DefaultLanguage>
+    <DefaultLanguage>en</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetPlatformVersion>10.0.10586.0</TargetPlatformVersion>
     <TargetPlatformMinVersion>10.0.10586.0</TargetPlatformMinVersion>
@@ -17,8 +17,11 @@
     <EnableDotNetNativeCompatibleProfile>true</EnableDotNetNativeCompatibleProfile>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <PackageCertificateKeyFile>TestOneDriveSdk_001_TemporaryKey.pfx</PackageCertificateKeyFile>
-    <PackageCertificateThumbprint>745886E29BE1526F7C2B8B4A28EED5031F6CFD22</PackageCertificateThumbprint>
+    <PackageCertificateKeyFile>TestOneDriveSdk_001_StoreKey.pfx</PackageCertificateKeyFile>
+    <PackageCertificateThumbprint>4A0B4889A2B958C07D86BE0D2C26F33EE7491542</PackageCertificateThumbprint>
+    <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
+    <AppxBundle>Always</AppxBundle>
+    <AppxBundlePlatforms>x86|x64</AppxBundlePlatforms>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM'">
     <DebugSymbols>true</DebugSymbols>
@@ -92,6 +95,7 @@
   <ItemGroup>
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
     <None Include="project.json" />
+    <None Include="TestOneDriveSdk_001_StoreKey.pfx" />
     <None Include="TestOneDriveSdk_001_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
@@ -131,12 +135,22 @@
     <Content Include="Assets\plus_add_minus.png" />
     <Content Include="Assets\running.jpg" />
     <Content Include="Assets\save-button-grey-hi.png" />
+    <Content Include="Assets\SplashScreen.scale-100.jpg" />
+    <Content Include="Assets\SplashScreen.scale-125.jpg" />
+    <Content Include="Assets\SplashScreen.scale-150.jpg" />
     <Content Include="Assets\SplashScreen.scale-200.jpg" />
     <Content Include="Assets\SplashScreen.scale-400.jpg" />
+    <Content Include="Assets\Square150x150Logo.scale-100.png" />
+    <Content Include="Assets\Square310x310Logo.scale-100.png" />
+    <Content Include="Assets\Square310x310Logo.scale-200.png" />
+    <Content Include="Assets\Square44x44Logo.scale-100.png" />
+    <Content Include="Assets\Square71x71Logo.scale-100.png" />
+    <Content Include="Assets\Square71x71Logo.scale-200.png" />
     <Content Include="Assets\text_back.jpg" />
     <Content Include="Assets\upload-button-circle.png" />
     <Content Include="Assets\upload.png" />
     <Content Include="Assets\uploaded-image.png" />
+    <Content Include="Assets\Wide310x150Logo.scale-100.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\Square150x150Logo.scale-200.png" />

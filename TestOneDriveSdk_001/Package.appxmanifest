@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" IgnorableNamespaces="uap mp">
-  <Identity Name="53092LaurentBugnion.TestOneDriveSdk001" Publisher="CN=Ika" Version="1.1.0.0" />
+  <Identity Name="16707IrakliLomidze.FitnessTracker2.0" Publisher="CN=276FF0D0-51B6-47E4-AAC2-91CA2274A6F8" Version="1.1.12.0" />
   <mp:PhoneIdentity PhoneProductId="62e10118-0e80-4ba0-b84d-722af387480e" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
-    <DisplayName>TestOneDriveSdk_001</DisplayName>
-    <PublisherDisplayName>Laurent Bugnion</PublisherDisplayName>
+    <DisplayName>Fitness Tracker 2.0</DisplayName>
+    <PublisherDisplayName>IrakliLomidze</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
   <Dependencies>
@@ -16,9 +16,19 @@
   <Applications>
     <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="TestOneDriveSdk_001.App">
       <uap:VisualElements DisplayName="Fitness Tracker" Square150x150Logo="Assets\Square150x150Logo.png" Square44x44Logo="Assets\Square44x44Logo.png" Description="TestOneDriveSdk_001" BackgroundColor="transparent">
-        <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png">
+        <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png" Square71x71Logo="Assets\Square71x71Logo.png" Square310x310Logo="Assets\Square310x310Logo.png">
+          <uap:ShowNameOnTiles>
+            <uap:ShowOn Tile="square150x150Logo" />
+            <uap:ShowOn Tile="square310x310Logo" />
+          </uap:ShowNameOnTiles>
         </uap:DefaultTile>
-        <uap:SplashScreen Image="Assets\LogoWhiteBlue.jpg" BackgroundColor="#aad1f2" />
+        <uap:SplashScreen Image="Assets\SplashScreen.jpg" BackgroundColor="#aad1f2" />
+        <uap:InitialRotationPreference>
+          <uap:Rotation Preference="portrait" />
+          <uap:Rotation Preference="landscape" />
+          <uap:Rotation Preference="portraitFlipped" />
+          <uap:Rotation Preference="landscapeFlipped" />
+        </uap:InitialRotationPreference>
       </uap:VisualElements>
     </Application>
   </Applications>
